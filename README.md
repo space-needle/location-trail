@@ -8,6 +8,60 @@ This repository contains the source code for a simple iOS Location Tracker appli
 
 Since the code was generated in an environment without Xcode, you need to follow these instructions to build and run the application.
 
+## New Feature Setup (Authentication, Place Detection, Cloud Sync)
+
+Before building the project with the new features, you need to add the required third-party libraries (SDKs) and configure them.
+
+### 1. Add Firebase SDKs
+To handle user authentication, this project uses Firebase. You need to add the Firebase SDKs to your Xcode project using the Swift Package Manager.
+
+1.  In Xcode, with your project open, navigate to **File > Add Packages...**.
+2.  In the search bar that appears in the top right, paste the following URL:
+    ```
+    https://github.com/firebase/firebase-ios-sdk.git
+    ```
+3.  For the **Dependency Rule**, select **Up to Next Major Version**.
+4.  Click **Add Package**.
+5.  Xcode will fetch the package collections. When the list of package products appears, select the following two:
+    *   `FirebaseAuth`
+    *   `GoogleSignIn`
+6.  Click **Add Package** again. Xcode will integrate the packages into your project.
+
+### 2. Set up Firebase Project
+After adding the SDKs, you need to create and configure a Firebase project to connect to your app.
+
+1.  **Create a Firebase Project**:
+    *   Go to the [Firebase Console](https://console.firebase.google.com/).
+    *   Click **Add project**, and follow the on-screen instructions to create a new project.
+
+2.  **Register Your App with Firebase**:
+    *   Inside your new project, click the iOS icon to add an iOS app.
+    *   You'll be asked for your **iOS bundle ID**. You can find this in Xcode. In the Project Navigator, click the top-level project item, select your `LocationTracker` target, and go to the **General** tab. The Bundle Identifier is shown there (e.g., `com.yourname.LocationTracker`).
+    *   Provide an app nickname (optional) and an App Store ID (optional, you can skip this).
+    *   Click **Register app**.
+
+3.  **Download and Add `GoogleService-Info.plist`**:
+    *   Firebase will provide a `GoogleService-Info.plist` file for you to download.
+    *   Download this file.
+    *   In Xcode, drag the downloaded `GoogleService-Info.plist` file into the root of your Xcode project's file list (place it alongside your `Info.plist` file).
+    *   When prompted, make sure that **"Copy items if needed"** is checked and that your `LocationTracker` target is selected.
+
+4.  **Configure URL Scheme for Google Sign-In**:
+    *   The `GoogleService-Info.plist` contains a `REVERSED_CLIENT_ID`. Open the file to find this value.
+    *   In Xcode, go to your target's **Info** tab.
+    *   At the bottom, expand **URL Types** and click the `+` button.
+    *   In the **URL Schemes** box, paste the `REVERSED_CLIENT_ID` value.
+
+5.  **Enable Authentication Methods in Firebase**:
+    *   Back in the Firebase Console, go to the **Authentication** section from the left-hand menu.
+    *   Click the **Sign-in method** tab.
+    *   Enable both **Apple** and **Google** as sign-in providers.
+    *   For Google, you may need to provide a project support email.
+
+Your app is now configured to use Firebase for authentication.
+
+(Further setup instructions for Google Maps API will be added in a subsequent step).
+
 ## How to Build the Project
 
 ### Prerequisites

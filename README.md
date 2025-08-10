@@ -60,7 +60,20 @@ After adding the SDKs, you need to create and configure a Firebase project to co
 
 Your app is now configured to use Firebase for authentication.
 
-(Further setup instructions for Google Maps API will be added in a subsequent step).
+### 3. Set up Google Maps API
+To turn the coordinates of a detected place into a human-readable address, the app uses the Google Maps Geocoding API.
+
+1.  **Enable the API**:
+    *   Go to the [Google Cloud Console](https://console.cloud.google.com/).
+    *   Make sure your Firebase project is selected. (Firebase projects are also Google Cloud projects).
+    *   In the navigation menu, go to **APIs & Services > Library**.
+    *   Search for **"Geocoding API"** and enable it for your project.
+
+2.  **Get an API Key**:
+    *   In the navigation menu, go to **APIs & Services > Credentials**.
+    *   Click **Create Credentials > API key**.
+    *   Your new API key will be displayed. Copy this key.
+    *   **Important**: For a production app, you should restrict this API key to prevent unauthorized use. You can add restrictions to only allow requests from your specific iOS app's bundle ID.
 
 ## How to Build the Project
 
